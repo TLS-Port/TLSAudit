@@ -34,7 +34,7 @@ get_dict() {
 set_dict "ssl_protocols:SSLv2" "insecure"
 set_dict "ssl_protocols:SSLv3" "insecure"
 set_dict "ssl_protocols:TLSv1" "insecure"
-set_dict "ssl_protocols:TLSv1.1" "weak"
+set_dict "ssl_protocols:TLSv1.1" "insecure"
 
 set_dict "ssl_ciphers:aNULL" "insecure"
 set_dict "ssl_ciphers:MD5" "insecure"
