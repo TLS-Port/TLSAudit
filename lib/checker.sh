@@ -34,10 +34,20 @@ get_dict() {
 set_dict "ssl_protocols:SSLv2" "insecure"
 set_dict "ssl_protocols:SSLv3" "insecure"
 set_dict "ssl_protocols:TLSv1" "insecure"
-set_dict "ssl_protocols:TLSv1.1" "weak"
+set_dict "ssl_protocols:TLSv1.1" "insecure"
 set_dict "ssl_early_data:on" "weak"
 set_dict "ssl_ciphers:aNULL" "insecure"
 set_dict "ssl_ciphers:MD5" "insecure"
+set_dict "ssl_ciphers:EXPORT56" "insecure"
+set_dict "ssl_ciphers:RC4+RSA" "insecure"
+set_dict "ssl_ciphers:DES" "insecure"
+set_dict "ssl_ciphers:3DES" "insecure"
+
+set_dict "ssl_ecdh_curve:SECP192R1" "insecure"
+set_dict "ssl_ecdh_curve:SECP224R1" "insecure"
+set_dict "ssl_ecdh_curve:SECP160R1" "insecure"
+set_dict "ssl_ecdh_curve:SECP160K1" "insecure"
+
 
 search_dict() {
     # Function to search for a key in the dictionary
