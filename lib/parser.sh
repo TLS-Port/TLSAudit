@@ -51,5 +51,5 @@ parseNginxConfig() {
             tls_options+=("$element")
         done
 
-    done < <(grep -E "^\s*(ssl_certificate|ssl_certificate_key|ssl_protocols|ssl_ciphers|ssl_early_data|ssl_prefer_server_ciphers|ssl_session_cache|ssl_session_timeout|ssl_trusted_certificate|ssl_stapling|ssl_stapling_verify|ssl_dhparam)\s+" "$config_file")
+    done < <(grep -E "^\s*(ssl_protocols|ssl_ciphers|ssl_early_data|ssl_ecdh_curve)\s+" "$config_file")
 }

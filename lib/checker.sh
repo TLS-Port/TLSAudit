@@ -42,11 +42,10 @@ set_dict "ssl_ciphers:EXPORT56" "insecure"
 set_dict "ssl_ciphers:RC4+RSA" "insecure"
 set_dict "ssl_ciphers:DES" "insecure"
 set_dict "ssl_ciphers:3DES" "insecure"
-
-set_dict "ssl_ecdh_curve:SECP192R1" "insecure"
-set_dict "ssl_ecdh_curve:SECP224R1" "insecure"
-set_dict "ssl_ecdh_curve:SECP160R1" "insecure"
-set_dict "ssl_ecdh_curve:SECP160K1" "insecure"
+set_dict "ssl_ecdh_curve:secp192r1" "insecure"
+set_dict "ssl_ecdh_curve:secp224r1" "insecure"
+set_dict "ssl_ecdh_curve:secp160r1" "insecure"
+set_dict "ssl_ecdh_curve:secp160k1" "insecure"
 
 
 search_dict() {
