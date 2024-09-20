@@ -33,6 +33,8 @@ setUp() {
     for element in "${tls_audit_weak[@]}"; do
         if [[ "$element" == "ssl_protocols:TLSv1.1" ]]; then
             audit_weak_tls11="$element"
+        elif [[ "$element" == "ssl_early_data:on" ]]; then
+            audit_weak_ssl_early_data="$element"
         fi
     done
 
@@ -40,6 +42,10 @@ setUp() {
     for element in "${tls_audit_insecure[@]}"; do
         if [[ "$element" == "ssl_protocols:TLSv1" ]]; then
             audit_insecure_tls1="$element"
+        elif [[ "$element" == "ssl_protocols:SSLv2" ]]; then
+            audit_insecure_SSLv2="$element"
+        elif [[ "$element" == "ssl_protocols:SSLv3" ]]; then
+            audit_insecure_SSLv3="$element"
         fi
     done
 }
@@ -82,6 +88,20 @@ testParserCipherMD5() {
     assertEquals "Nginx configuration contains ssl_ciphers:!MD5" $opt_ciphers_not_md5 "ssl_ciphers:!MD5"
 }
 
+testCheckerProtocolSSLv2() {
+    # Test if the checker can identify weak or insecure options
+    checkNginxTLSOptions "$tls_options"
+
+    assertEquals "SSLv2 option is insecure" "$audit_insecure_SSLv2" "ssl_protocols:SSLv2"
+}
+
+testCheckerProtocolSSLv3() {
+    # Test if the checker can identify weak or insecure options
+    checkNginxTLSOptions "$tls_options"
+
+    assertEquals "SSLv3 option is insecure" "$audit_insecure_SSLv3" "ssl_protocols:SSLv3"
+}
+
 testCheckerProtocolTLSv1() {
     # Test if the checker can identify weak or insecure options
     checkNginxTLSOptions "$tls_options"
@@ -96,20 +116,11 @@ testCheckerProtocolTLSv11() {
     assertEquals "TLSv1.1 option is weak" "$audit_weak_tls11" "ssl_protocols:TLSv1.1"
 }
 
-testReporterWeakTLSOptions() {
-    # Test if the reporter can print weak TLS options
+testCheckerSSLEarlyData() {
+    # Test if the checker can identify weak or insecure options
     checkNginxTLSOptions "$tls_options"
-    reportWeakTLSOptions
 
-    assertEquals "Weak TLS options:" "${tls_audit_weak[@]}"
-}
-
-testReporterInsecureTLSOptions() {
-    # Test if the reporter can print insecure TLS options
-    checkNginxTLSOptions "$tls_options"
-    reportInsecureTLSOptions
-
-    assertEquals "Insecure TLS options:" "${tls_audit_insecure[@]}"
+    assertEquals "SSL Early Data option is weak" "$audit_weak_ssl_early_data" "ssl_early_data:on"
 }
 
 . shunit2
