@@ -2,12 +2,12 @@
 
 setUp() {
     # Source TLSAudit functions
-    source ./lib/parser.sh
-    source ./lib/checker.sh
-    source ./lib/reporter.sh
+    source ../lib/parser.sh
+    source ../lib/checker.sh
+    source ../lib/reporter.sh
 
     # Parse the Nginx configuration file
-    parseNginxConfig ./test/nginx_example1.conf
+    parseNginxConfig ./nginx1.conf
 
     # Loop through the array and store specific values in selected variables
     for element in "${tls_options[@]}"; do
